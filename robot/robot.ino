@@ -11,7 +11,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  achteruit(1000);
+  vooruit(1000);
   delay(1000);
 }
 
@@ -62,7 +62,12 @@ void vooruit(int tijd) {
  // Woord
 
 void schrijfWoord() {
- 
+ int ln = 1;
+
+ if (ln == 1) {
+  l();
+  ln = 2; 
+ }
 }
 
  void l() {}
