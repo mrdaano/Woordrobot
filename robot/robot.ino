@@ -3,6 +3,7 @@ int M1b = 5;
 int M2b = 6;
 int M2 = 7;
 int letter = 1;
+bool stop = false;
 void setup() {
   // put your setup code here, to run once:
   pinMode(M1, OUTPUT);
@@ -10,9 +11,11 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  vooruit(1000);
-  delay(1000);
+  if (!stop) {
+  schrijfWoord();
+  stop = true;
+  }
+  //delay(1000);
 }
 
 // Besturings deel
@@ -20,8 +23,8 @@ void loop() {
 void vooruit(int tijd) {
   digitalWrite(M1, HIGH);
   digitalWrite(M2, HIGH);
-  analogWrite(M1b, 255);
-  analogWrite(M2b, 255);
+  analogWrite(M1b, 155);
+  analogWrite(M2b, 150);
   delay(tijd);
   stil();
  }
@@ -29,8 +32,8 @@ void vooruit(int tijd) {
  void achteruit(int tijd) {
   digitalWrite(M1, LOW);
   digitalWrite(M2, LOW);
-  analogWrite(M1b, 255);
-  analogWrite(M2b, 255);
+  analogWrite(M1b, 155);
+  analogWrite(M2b, 150);
   delay(tijd);
   stil();
  }
@@ -38,8 +41,8 @@ void vooruit(int tijd) {
  void links(int tijd) {
   digitalWrite(M1, HIGH);
   digitalWrite(M2, LOW);
-  analogWrite(M1b, 255);
-  analogWrite(M2b, 255);
+  analogWrite(M1b, 150);
+  analogWrite(M2b, 150);
   delay(tijd);
   stil();
  }
@@ -47,8 +50,8 @@ void vooruit(int tijd) {
  void rechts(int tijd) {
   digitalWrite(M1, LOW);
   digitalWrite(M2, HIGH);
-  analogWrite(M1b, 255);
-  analogWrite(M2b, 255);
+  analogWrite(M1b, 153);
+  analogWrite(M2b, 150);
   delay(tijd);
   stil();
  }
@@ -68,15 +71,53 @@ void schrijfWoord() {
   l();
   ln = 2; 
  }
+
+ if (ln == 2) {
+  vooruit(300);
+  links(900);
+  i();
+  //ln = 3;
+ }
+
+ if (ln == 3) {
+  e();
+  ln = 4; 
+ }
 }
 
- void l() {}
+ void l() {
+  vooruit(800);
+  achteruit(800);
+  rechts(700);
+  vooruit(450);
+ }
 
- void i() {}
+ void i() {
+  vooruit(800);
+  achteruit(800);
+ }
 
- void e() {}
+ void e() {
+  vooruit(800);
+  rechts(700);
+  vooruit(450);
+  achteruit(450);
+  links(700);
+  achteruit(266);
+  rechts(700);
+  vooruit(450);
+  achteruit(450);
+  //links();
+ }
 
- void f() {}
+ void f() {
+  vooruit(800);
+  rechts(700);
+  vooruit(450);
+  achteruit(450);
+  links(700);
+  achteruit(266); 
+ }
 
 
 // Display
